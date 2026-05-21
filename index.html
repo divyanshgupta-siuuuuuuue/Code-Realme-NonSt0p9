@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CODE REALME NONSTOP</title>
+
+<link rel="icon" href="https://cdn-icons-png.flaticon.com/512/5968/5968292.png">
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+body{
+    margin:0;
+    background:#050816;
+    color:white;
+    font-family:Arial, sans-serif;
+    overflow:hidden;
+}
+
+.sidebar{
+    width:260px;
+    background:#0f172a;
+    height:100vh;
+    position:fixed;
+    left:0;
+    top:0;
+    border-right:2px solid #7e22ce;
+    padding:20px;
+    overflow-y:auto;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:bold;
+    color:#facc15;
+    margin-bottom:30px;
+}
+
+.nav-btn{
+    width:100%;
+    padding:15px;
+    margin-bottom:12px;
+    border:none;
+    border-radius:12px;
+    background:#1e293b;
+    color:white;
+    cursor:pointer;
+    text-align:left;
+    font-size:16px;
+    transition:0.3s;
+}
+
+.nav-btn:hover{
+    background:#7e22ce;
+}
+
+.main{
+    margin-left:260px;
+    height:100vh;
+    overflow:auto;
+}
+
+.page{
+    display:none;
+    padding:30px;
+    min-height:100vh;
+}
+
+.active{
+    display:block;
+}
+
+.card{
+    background:#111827;
+    border-radius:20px;
+    padding:25px;
+    border:1px solid #7e22ce;
+    margin-bottom:25px;
+}
+
+input, textarea, select{
+    width:100%;
+    padding:14px;
+    margin-top:10px;
+    margin-bottom:15px;
+    background:#0f172a;
+    border:1px solid #374151;
+    border-radius:10px;
+    color:white;
+}
+
+button.action{
+    background:#7e22ce;
+    color:white;
+    padding:14px 24px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button.action:hover{
+    background:#9333ea;
+}
+
+.project-file{
+    background:#0f172a;
+    padding:15px;
+    border-radius:10px;
+    margin-bottom:10px;
+}
+
+#terminal{
+    background:black;
+    color:#00ff00;
+    height:300px;
+    overflow:auto;
+    padding:15px;
+    border-radius:12px;
+    font-family:monospace;
+}
+
+iframe{
+    width:100%;
+    height:400px;
+    border:none;
+    border-radius:12px;
+    background:white;
+}
+
+.video-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
+
+video{
+    width:100%;
+    height:300px;
+    background:black;
+    border-radius:15px;
+}
+
+.social-id{
+    color:#facc15;
+    font-size:22px;
+    font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="sidebar">
+
+<div class="logo">
+⚡ CODE REALME
+</div>
+
+<button class="nav-btn" onclick="openPage('dashboard')">
+🏠 Dashboard
+</button>
+
+<button class="nav-btn" onclick="openPage('profile')">
+👤 Profile
+</button>
+
+<button class="nav-btn" onclick="openPage('projects')">
+💻 Projects
+</button>
+
+<button class="nav-btn" onclick="openPage('compiler')">
+⚙ One Compiler
+</button>
+
+<button class="nav-btn" onclick="openPage('socials')">
+🌐 Socials
+</button>
+
+<button class="nav-btn" onclick="openPage('live')">
+📹 Live At Peak
+</button>
+
+<button class="nav-btn" onclick="openPage('links')">
+🔗 Links
+</button>
+
+</div>
+
+<div class="main">
+
+<!-- DASHBOARD -->
+<div id="dashboard" class="page active">
+
+<div class="card">
+<h1 style="color:#facc15;font-size:40px;">
+CODE REALME NONSTOP
+</h1>
+
+<p>
+Infinite Fullstack Multiplayer Coding Platform
+</p>
+</div>
+
+<div class="card">
+<h2>Your Social ID</h2>
+
+<div class="social-id" id="socialId">
+CRN-928382
+</div>
+</div>
+
+</div>
+
+<!-- PROFILE -->
+<div id="profile" class="page">
+
+<div class="card">
+<h1>Profile Settings</h1>
+
+<input type="text" placeholder="Username">
+
+<textarea placeholder="Bio"></textarea>
+
+<input type="file" id="profileLogo">
+
+<img id="profilePreview"
+style="
+width:120px;
+height:120px;
+border-radius:50%;
+margin-top:20px;
+object-fit:cover;
+border:3px solid #7e22ce;
+"
+src="https://placehold.co/120x120">
+
+<br><br>
+
+<button class="action">
+Save Profile
+</button>
+</div>
+
+</div>
+
+<!-- PROJECTS -->
+<div id="projects" class="page">
+
+<div class="card">
+
+<h1>Create Project</h1>
+
+<input type="text" id="projectName" placeholder="Project Name">
+
+<textarea id="projectDescription"
+placeholder="Project Description"></textarea>
+
+<select id="projectType">
+<option>Public</option>
+<option>Private</option>
+</select>
+
+<button class="action" onclick="createProject()">
+Create Project
+</button>
+
+</div>
+
+<div class="card">
+
+<h2>Project Workspace</h2>
+
+<div id="projectFiles"></div>
+
+<input type="file" multiple id="files">
+
+<button class="action" onclick="addFiles()">
+Add Files
+</button>
+
+</div>
+
+</div>
+
+<!-- COMPILER -->
+<div id="compiler" class="page">
+
+<div class="card">
+
+<h1>One Compiler</h1>
+
+<textarea id="code"
+style="height:300px;"
+placeholder="Write HTML/CSS/JS"></textarea>
+
+<button class="action" onclick="runCode()">
+Compile
+</button>
+
+</div>
+
+<div class="card">
+<h2>Terminal</h2>
+
+<div id="terminal">
+> System Ready...
+</div>
+</div>
+
+<div class="card">
+<h2>Preview</h2>
+
+<iframe id="preview"></iframe>
+</div>
+
+</div>
+
+<!-- SOCIALS -->
+<div id="socials" class="page">
+
+<div class="card">
+
+<h1>Socials</h1>
+
+<input type="text" placeholder="Search Social ID">
+
+<button class="action">
+Send Friend Request
+</button>
+
+</div>
+
+<div class="card">
+<h2>Online Friends</h2>
+
+<div class="project-file">
+👤 Alex — Online
+</div>
+
+<div class="project-file">
+👤 Neo — Online
+</div>
+
+</div>
+
+</div>
+
+<!-- LIVE -->
+<div id="live" class="page">
+
+<div class="card">
+
+<h1>Live At Peak</h1>
+
+<button class="action" onclick="startCamera()">
+Start Camera
+</button>
+
+<button class="action" onclick="shareScreen()">
+Share Screen
+</button>
+
+</div>
+
+<div class="video-grid">
+
+<video id="localVideo" autoplay muted></video>
+
+<video id="screenVideo" autoplay></video>
+
+</div>
+
+</div>
+
+<!-- LINKS -->
+<div id="links" class="page">
+
+<div class="card">
+
+<h1>Generate Project Link</h1>
+
+<input type="text"
+id="linkProject"
+placeholder="Project Name">
+
+<button class="action"
+onclick="generateLink()">
+Generate Link
+</button>
+
+<br><br>
+
+<div id="generatedLink"
+style="color:#facc15;font-size:20px;">
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+function openPage(page){
+
+document.querySelectorAll('.page')
+.forEach(p=>{
+p.classList.remove('active');
+});
+
+document.getElementById(page)
+.classList.add('active');
+
+}
+
+document.getElementById('profileLogo')
+.addEventListener('change', function(e){
+
+const file = e.target.files[0];
+
+if(file){
+
+const reader = new FileReader();
+
+reader.onload = function(event){
+
+document.getElementById('profilePreview')
+.src = event.target.result;
+
+}
+
+reader.readAsDataURL(file);
+
+}
+
+});
+
+function createProject(){
+
+const name =
+document.getElementById('projectName').value;
+
+if(!name){
+alert("Enter Project Name");
+return;
+}
+
+const div = document.createElement('div');
+
+div.className = 'project-file';
+
+div.innerHTML =
+"📁 " + name + " Created Successfully";
+
+document.getElementById('projectFiles')
+.appendChild(div);
+
+}
+
+function addFiles(){
+
+const files =
+document.getElementById('files').files;
+
+const container =
+document.getElementById('projectFiles');
+
+for(let file of files){
+
+const div = document.createElement('div');
+
+div.className = 'project-file';
+
+div.innerHTML =
+"📄 " + file.name;
+
+container.appendChild(div);
+
+}
+
+}
+
+function speakError(){
+
+const msg =
+new SpeechSynthesisUtterance(
+"Syntax Error Detected"
+);
+
+msg.lang = "en-GB";
+
+speechSynthesis.speak(msg);
+
+}
+
+function runCode(){
+
+const code =
+document.getElementById('code').value;
+
+const terminal =
+document.getElementById('terminal');
+
+try{
+
+document.getElementById('preview')
+.srcdoc = code;
+
+terminal.innerHTML +=
+"<br>> Compiled Successfully";
+
+if(code.includes("error")){
+
+throw new Error("Syntax Error");
+
+}
+
+}catch(e){
+
+terminal.innerHTML +=
+"<br>> ERROR: " + e.message;
+
+speakError();
+
+}
+
+terminal.scrollTop =
+terminal.scrollHeight;
+
+}
+
+async function startCamera(){
+
+try{
+
+const stream =
+await navigator.mediaDevices
+.getUserMedia({
+video:true,
+audio:true
+});
+
+document.getElementById('localVideo')
+.srcObject = stream;
+
+}catch(err){
+
+alert("Camera Permission Denied");
+
+}
+
+}
+
+async function shareScreen(){
+
+try{
+
+const stream =
+await navigator.mediaDevices
+.getDisplayMedia({
+video:true
+});
+
+document.getElementById('screenVideo')
+.srcObject = stream;
+
+}catch(err){
+
+alert("Screen Share Cancelled");
+
+}
+
+}
+
+function generateLink(){
+
+const project =
+document.getElementById('linkProject')
+.value;
+
+if(!project){
+alert("Enter Project Name");
+return;
+}
+
+const id =
+Math.floor(Math.random()*999999);
+
+document.getElementById('generatedLink')
+.innerHTML =
+"https://yourrenderlink.onrender.com/project-" +
+id + "-" +
+project.replace(/\s/g,'');
+
+}
+
+</script>
+
+</body>
+</html>
